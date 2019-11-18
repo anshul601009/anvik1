@@ -4,6 +4,8 @@ on: [push]
 
 jobs:
   build:
+    env:
+     NODE_VERSION: 12.x
 
     runs-on: ubuntu-latest
 
@@ -11,11 +13,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js 12.x
+    - name: Use Node.js ${{ env.NODE_VERSION }}
     
       uses: actions/setup-node@v1
       with:
-        node-version: 12.x
+        node-version: ${{ env.NODE_VERSION }}
     - name: npm install, build, and test
       run: |
         npm ci
